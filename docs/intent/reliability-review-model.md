@@ -5,6 +5,7 @@ Reliability reviews keep the model current after onboarding.
 ## Review Inputs
 
 - SLO status and misses
+- SLO objective realism and calculation basis
 - incidents and postmortems
 - action item status
 - dependency changes
@@ -19,7 +20,8 @@ Reliability reviews keep the model current after onboarding.
 - Did responders have enough context?
 - Did miss-policy work?
 - Should SLOs change?
+- Did the calculation basis still match traffic volume?
+- Did dependencies invalidate the assumptions behind the objective?
 - Are action items reducing risk?
 - Are dependencies still acceptable?
 - Are lessons reusable by other teams?
-

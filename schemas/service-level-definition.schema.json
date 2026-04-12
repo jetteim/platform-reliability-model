@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/platform-reliability/service-level-definition.schema.json",
+  "title": "Service Level Definition",
+  "type": "object",
+  "required": ["apiVersion", "kind", "metadata", "service", "slis", "missPolicy"],
+  "properties": {
+    "apiVersion": { "const": "reliability.platform/v1alpha1" },
+    "kind": { "const": "ServiceLevelDefinition" },
+    "metadata": { "type": "object", "required": ["name"], "properties": { "name": { "type": "string" } } },
+    "service": {
+      "type": "object",
+      "required": ["application", "name", "owner"],
+      "properties": {
+        "application": { "type": "string" },
+        "name": { "type": "string" },
+        "owner": { "type": "string" }
+      }
+    },
+    "slis": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "userPerspective", "signal", "slos"],
+        "properties": {
+            "name": { "type": "string" },
+            "userPerspective": { "type": "string" },
+            "signal": { "enum": ["latency", "traffic", "errors", "saturation", "user_journey", "freshness", "availability"] },
+            "measurement": {
+              "type": "object",
+              "properties": {
+                "source": { "type": "string" },
+                "point": { "type": "string" },
+                "activeProbeInterval": { "type": "string" },
+                "activeProbeTimeout": { "type": "string" },
+                "thresholdRequirements": { "type": "string" },
+                "caveats": { "type": "string" }
+              }
+            },
+            "instances": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["name", "scope"],
+                "properties": {
+                  "name": { "type": "string" },
+                  "scope": { "type": "string" },
+                  "audience": { "type": "string" }
+                }
+              }
+            },
+            "slos": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["name", "successCondition", "objectiveRatio", "window", "calculationBasis"],
+                "properties": {
+                  "name": { "type": "string" },
+                  "successCondition": { "type": "string" },
+                  "objectiveRatio": { "type": "number", "exclusiveMinimum": 0, "maximum": 1 },
+                  "window": { "type": "string" },
+                  "calculationBasis": { "enum": ["observations", "time-slice"] },
+                "realityCheck": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "missPolicy": { "type": "string" }
+  }
+}

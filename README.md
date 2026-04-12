@@ -7,6 +7,8 @@ This repository documents reliability intent first. Ticket systems, chat channel
 ## Scope
 
 - Service reliability profiles and operational readiness.
+- Service level definitions, SLI/SLO selection, telemetry-derived candidate generation, calculation basis, and review.
+- Error budget and burn-rate response model.
 - Incident records, impact and urgency assessment, and response metadata.
 - Postmortem analysis, timelines, contributing causes, lessons, and action items.
 - Miss-policy and error-budget response.
@@ -37,5 +39,6 @@ The validator checks required files, JSON schemas, YAML examples, and implementa
 ## Usage Scenarios
 
 - [Service Reliability Onboarding](docs/usage-scenarios/service-reliability-onboarding.md)
+- [Telemetry-Derived SLI/SLO Onboarding](docs/usage-scenarios/telemetry-derived-sli-slo-onboarding.md)
+- [SLI/SLO Definition And Review](docs/usage-scenarios/sli-slo-definition-and-review.md)
 - [Incident To Postmortem To Learning](docs/usage-scenarios/incident-to-postmortem-to-learning.md)
-

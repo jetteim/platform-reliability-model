@@ -5,7 +5,11 @@ required_files=(
   README.md
   docs/intent/principles.md
   docs/intent/reliability-boundaries.md
+  docs/intent/service-level-definition-model.md
   docs/intent/service-reliability-model.md
+  docs/intent/sli-slo-selection-model.md
+  docs/intent/error-budget-alerting-model.md
+  docs/intent/reliability-recommendations-model.md
   docs/intent/incident-model.md
   docs/intent/postmortem-model.md
   docs/intent/contributing-causes-model.md
@@ -20,6 +24,8 @@ required_files=(
   docs/devex/ci-validation.md
   docs/devex/reliability-gates.md
   docs/usage-scenarios/service-reliability-onboarding.md
+  docs/usage-scenarios/telemetry-derived-sli-slo-onboarding.md
+  docs/usage-scenarios/sli-slo-definition-and-review.md
   docs/usage-scenarios/incident-to-postmortem-to-learning.md
   docs/migration/mapping-current-process-to-model.md
   docs/sources/source-scan-summary.md
@@ -51,6 +57,7 @@ if grep -RniE '(^|[^A-Za-z])(jira|ms teams|xing|new work|datadog|grafana|thanos|
 fi
 
 grep -R "kind: ServiceReliabilityProfile" examples/service-reliability-profile.yaml >/dev/null
+grep -R "kind: ServiceLevelDefinition" examples/service-level-definition.yaml >/dev/null
 grep -R "kind: IncidentRecord" examples/incident-record.yaml >/dev/null
 grep -R "kind: PostmortemAnalysis" examples/postmortem-analysis.yaml >/dev/null
 grep -R "verification:" examples/action-item.yaml >/dev/null

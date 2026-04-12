@@ -1,0 +1,28 @@
+apiVersion: reliability.platform/v1alpha1
+kind: ServiceLevelDefinition
+metadata:
+  name: checkout-api
+service:
+  application: checkout
+  name: checkout-api
+  owner: payments-platform
+slis:
+  - name: checkout-api-http-requests
+    userPerspective: A shopper can complete checkout through the API.
+    signal: availability
+    measurement:
+      source: Server-side request telemetry.
+      point: Service entrypoint.
+      caveats: Client network and browser rendering are outside this SLI.
+    instances:
+      - name: checkout-api-public-routes
+        scope: Public checkout API routes used by shopper checkout flow.
+        audience: Checkout users and downstream consuming teams.
+    slos:
+      - name: successful-requests-p99-9
+        successCondition: HTTP requests complete without server-side failure.
+        objectiveRatio: 0.999
+        window: 30d
+        calculationBasis: observations
+        realityCheck: Historical request volume is high enough for observations-based evaluation and leaves a meaningful repair budget.
+missPolicy: Two responders work on recovery or reliability debt until error budget is non-negative and recovery is verified.
