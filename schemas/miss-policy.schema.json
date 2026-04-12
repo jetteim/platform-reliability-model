@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/platform-reliability/miss-policy.schema.json",
+  "title": "Miss Policy",
+  "type": "object",
+  "required": ["apiVersion", "kind", "metadata", "service", "trigger", "response", "exitCondition"],
+  "properties": {
+    "apiVersion": { "const": "reliability.platform/v1alpha1" },
+    "kind": { "const": "MissPolicy" },
+    "metadata": { "type": "object", "required": ["name"], "properties": { "name": { "type": "string" } } },
+    "service": { "type": "string" },
+    "trigger": { "type": "string" },
+    "response": { "type": "string" },
+    "exitCondition": { "type": "string" }
+  }
+}
+

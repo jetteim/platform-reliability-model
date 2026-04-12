@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/platform-reliability/service-reliability-profile.schema.json",
+  "title": "Service Reliability Profile",
+  "type": "object",
+  "required": ["apiVersion", "kind", "metadata", "service", "ownership", "capabilities", "dependencies", "readiness"],
+  "properties": {
+    "apiVersion": { "const": "reliability.platform/v1alpha1" },
+    "kind": { "const": "ServiceReliabilityProfile" },
+    "metadata": { "type": "object", "required": ["name"], "properties": { "name": { "type": "string" } } },
+    "service": {
+      "type": "object",
+      "required": ["application", "name", "criticality"],
+      "properties": {
+        "application": { "type": "string" },
+        "name": { "type": "string" },
+        "criticality": { "type": "string" }
+      }
+    },
+    "ownership": { "type": "object", "required": ["team", "escalation"], "properties": { "team": { "type": "string" }, "escalation": { "type": "string" } } },
+    "capabilities": { "type": "array", "items": { "type": "string" } },
+    "dependencies": { "type": "array", "items": { "type": "string" } },
+    "readiness": { "type": "string" }
+  }
+}
+

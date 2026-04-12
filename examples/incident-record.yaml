@@ -1,0 +1,15 @@
+apiVersion: reliability.platform/v1alpha1
+kind: IncidentRecord
+metadata:
+  name: checkout-route-unavailable
+summary: Checkout route returned no ready backend.
+impact: high
+urgency: high
+priority: immediate
+timeline:
+  - time: "2026-04-12T13:05:00Z"
+    actor: alerting-system
+    event: Route had no ready backend.
+    evidence:
+      - route-backend-readiness-alert
+

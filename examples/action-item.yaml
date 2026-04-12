@@ -1,0 +1,9 @@
+apiVersion: reliability.platform/v1alpha1
+kind: ReliabilityActionItem
+metadata:
+  name: checkout-readiness-failure-test
+source: postmortem/checkout-route-unavailable
+category: improve-release-safety
+owner: payments-platform
+verification: CI fails when checkout readiness does not fail closed for dependency outage.
+

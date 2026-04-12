@@ -1,0 +1,17 @@
+apiVersion: reliability.platform/v1alpha1
+kind: PostmortemAnalysis
+metadata:
+  name: checkout-route-unavailable
+description: Checkout traffic was routed to zero ready backends after a deployment.
+timeline:
+  - time: "2026-04-12T12:58:00Z"
+    actor: deployment-system
+    event: New version deployed.
+impactEvaluation: Users could not complete checkout while no ready backends were available.
+contributingCauses:
+  - Readiness probe behavior was not tested against the new dependency failure mode.
+lessonsLearned:
+  - Check readiness behavior for dependency failures before production rollout.
+actionItems:
+  - checkout-readiness-failure-test
+

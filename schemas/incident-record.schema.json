@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/platform-reliability/incident-record.schema.json",
+  "title": "Incident Record",
+  "type": "object",
+  "required": ["apiVersion", "kind", "metadata", "summary", "impact", "urgency", "priority", "timeline"],
+  "properties": {
+    "apiVersion": { "const": "reliability.platform/v1alpha1" },
+    "kind": { "const": "IncidentRecord" },
+    "metadata": { "type": "object", "required": ["name"], "properties": { "name": { "type": "string" } } },
+    "summary": { "type": "string" },
+    "impact": { "enum": ["low", "medium", "high"] },
+    "urgency": { "enum": ["low", "medium", "high"] },
+    "priority": { "enum": ["low", "normal", "high", "immediate"] },
+    "timeline": { "type": "array", "items": { "$ref": "timeline-event.schema.json" } }
+  }
+}
+

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/platform-reliability/timeline-event.schema.json",
+  "title": "Timeline Event",
+  "type": "object",
+  "required": ["time", "actor", "event"],
+  "properties": {
+    "time": { "type": "string" },
+    "actor": { "type": "string" },
+    "event": { "type": "string" },
+    "evidence": { "type": "array", "items": { "type": "string" } }
+  }
+}
+

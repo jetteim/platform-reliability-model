@@ -1,0 +1,9 @@
+apiVersion: reliability.platform/v1alpha1
+kind: MissPolicy
+metadata:
+  name: checkout-api-availability
+service: checkout-api
+trigger: checkout-api availability error budget is exhausted for the active window
+response: two engineers stop feature work and work on recovery, mitigation, or agreed reliability debt
+exitCondition: error budget is non-negative and the recovery action has been verified
+

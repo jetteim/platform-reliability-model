@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/platform-reliability/resilience-experiment.schema.json",
+  "title": "Resilience Experiment",
+  "type": "object",
+  "required": ["apiVersion", "kind", "metadata", "hypothesis", "system", "safety", "abortCriteria", "evidence"],
+  "properties": {
+    "apiVersion": { "const": "reliability.platform/v1alpha1" },
+    "kind": { "const": "ResilienceExperiment" },
+    "metadata": { "type": "object", "required": ["name"], "properties": { "name": { "type": "string" } } },
+    "hypothesis": { "type": "string" },
+    "system": { "type": "string" },
+    "safety": { "type": "string" },
+    "abortCriteria": { "type": "string" },
+    "evidence": { "type": "array", "items": { "type": "string" } }
+  }
+}
+

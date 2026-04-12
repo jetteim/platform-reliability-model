@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/platform-reliability/postmortem-analysis.schema.json",
+  "title": "Postmortem Analysis",
+  "type": "object",
+  "required": ["apiVersion", "kind", "metadata", "description", "timeline", "impactEvaluation", "contributingCauses", "lessonsLearned", "actionItems"],
+  "properties": {
+    "apiVersion": { "const": "reliability.platform/v1alpha1" },
+    "kind": { "const": "PostmortemAnalysis" },
+    "metadata": { "type": "object", "required": ["name"], "properties": { "name": { "type": "string" } } },
+    "description": { "type": "string" },
+    "timeline": { "type": "array", "items": { "$ref": "timeline-event.schema.json" } },
+    "impactEvaluation": { "type": "string" },
+    "contributingCauses": { "type": "array", "items": { "type": "string" } },
+    "lessonsLearned": { "type": "array", "items": { "type": "string" } },
+    "actionItems": { "type": "array", "items": { "type": "string" } }
+  }
+}
+

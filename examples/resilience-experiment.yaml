@@ -1,0 +1,13 @@
+apiVersion: reliability.platform/v1alpha1
+kind: ResilienceExperiment
+metadata:
+  name: checkout-product-catalog-timeout
+hypothesis: Checkout remains usable when product catalog read requests time out.
+system: checkout-api
+safety: Run during low traffic with rollback owner present.
+abortCriteria: Error rate exceeds the agreed experiment threshold or checkout SLO burn-rate alert fires.
+evidence:
+  - checkout availability SLO
+  - checkout dependency latency
+  - checkout fallback logs
+

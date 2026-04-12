@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/platform-reliability/action-item.schema.json",
+  "title": "Reliability Action Item",
+  "type": "object",
+  "required": ["apiVersion", "kind", "metadata", "source", "category", "owner", "verification"],
+  "properties": {
+    "apiVersion": { "const": "reliability.platform/v1alpha1" },
+    "kind": { "const": "ReliabilityActionItem" },
+    "metadata": { "type": "object", "required": ["name"], "properties": { "name": { "type": "string" } } },
+    "source": { "type": "string" },
+    "category": { "type": "string" },
+    "owner": { "type": "string" },
+    "verification": { "type": "string" }
+  }
+}
+
