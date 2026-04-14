@@ -24,4 +24,5 @@ Reliability reviews keep the model current after onboarding.
 - Did dependencies invalidate the assumptions behind the objective?
 - Are action items reducing risk?
 - Are dependencies still acceptable?
+- Do resilience experiments still prove that dependency and local workload failure is expected and bounded?
 - Are lessons reusable by other teams?

@@ -42,8 +42,9 @@ This scenario shows how an agent should prepare a service reliability profile wi
 9. Reality-check SLOs against history, dependencies, users, product goals, and repair capability.
 10. Review miss-policy and observability gaps.
 11. Assess graceful degradation, timeout, retry, circuit breaker, workload isolation, and rollback strategies.
-12. Define operational readiness status.
-13. Propose action items for gaps.
+12. Identify directed or ambient resilience experiment candidates for assumptions that should be proven regularly.
+13. Define operational readiness status.
+14. Propose action items for gaps.
 
 ## Human Review Gates
 

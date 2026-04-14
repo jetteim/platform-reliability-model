@@ -13,7 +13,7 @@ This repository documents reliability intent first. Ticket systems, chat channel
 - Postmortem analysis, timelines, contributing causes, lessons, and action items.
 - Miss-policy and error-budget response.
 - Dependency resilience and graceful degradation.
-- Resilience experiments and reliability reviews.
+- Resilience experiments and reliability reviews, including ambient failure patterns that make dependency and workload failure a routine design assumption.
 - Relationship to observability, SLOs, alert context, and decision dashboards.
 - Agent-first usage scenarios with human review gates.
 

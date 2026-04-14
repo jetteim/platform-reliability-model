@@ -3,16 +3,54 @@
   "$id": "https://example.invalid/platform-reliability/resilience-experiment.schema.json",
   "title": "Resilience Experiment",
   "type": "object",
-  "required": ["apiVersion", "kind", "metadata", "hypothesis", "system", "safety", "abortCriteria", "evidence"],
+  "required": ["apiVersion", "kind", "metadata", "experimentType", "hypothesis", "system", "safety", "abortCriteria", "expectedBehavior", "resilienceExpectation", "failureModel", "blastRadius", "cadence", "pauseAuthority", "evidence", "learningLoop"],
   "properties": {
     "apiVersion": { "const": "reliability.platform/v1alpha1" },
     "kind": { "const": "ResilienceExperiment" },
     "metadata": { "type": "object", "required": ["name"], "properties": { "name": { "type": "string" } } },
+    "experimentType": { "enum": ["directed-failure", "ambient-failure"] },
     "hypothesis": { "type": "string" },
     "system": { "type": "string" },
     "safety": { "type": "string" },
     "abortCriteria": { "type": "string" },
-    "evidence": { "type": "array", "items": { "type": "string" } }
+    "expectedBehavior": { "type": "string" },
+    "resilienceExpectation": { "type": "string" },
+    "failureModel": {
+      "type": "object",
+      "required": ["targetClass", "failureMode", "selectionPolicy", "exposure"],
+      "properties": {
+        "targetClass": { "type": "string" },
+        "failureMode": { "type": "string" },
+        "selectionPolicy": { "type": "string" },
+        "exposure": { "type": "string" },
+        "jitter": { "type": "string" }
+      }
+    },
+    "blastRadius": {
+      "type": "object",
+      "required": ["scope", "maxConcurrentImpact"],
+      "properties": {
+        "scope": { "type": "string" },
+        "maxConcurrentImpact": { "type": "string" }
+      }
+    },
+    "cadence": {
+      "type": "object",
+      "required": ["schedule"],
+      "properties": {
+        "schedule": { "type": "string" },
+        "exclusionWindows": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "pauseAuthority": { "type": "string" },
+    "evidence": { "type": "array", "items": { "type": "string" } },
+    "learningLoop": {
+      "type": "object",
+      "required": ["review", "followUp"],
+      "properties": {
+        "review": { "type": "string" },
+        "followUp": { "type": "string" }
+      }
+    }
   }
 }
-

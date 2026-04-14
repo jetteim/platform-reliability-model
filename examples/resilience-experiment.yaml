@@ -1,13 +1,33 @@
 apiVersion: reliability.platform/v1alpha1
 kind: ResilienceExperiment
 metadata:
-  name: checkout-product-catalog-timeout
-hypothesis: Checkout remains usable when product catalog read requests time out.
+  name: checkout-ambient-workload-restart
+experimentType: ambient-failure
+hypothesis: Checkout remains usable when a bounded share of request-serving workload instances restart on a recurring schedule.
 system: checkout-api
-safety: Run during low traffic with rollback owner present.
-abortCriteria: Error rate exceeds the agreed experiment threshold or checkout SLO burn-rate alert fires.
+safety: Run only when checkout is outside exclusion windows and the owning team can pause the schedule.
+abortCriteria: Checkout availability SLO burn-rate alert fires or error rate exceeds the agreed experiment threshold.
+expectedBehavior: Requests either succeed through healthy instances or fail fast without retry storms while recovery stays automatic.
+resilienceExpectation: Teams assume owned workload instances and dependencies can disappear, so checkout must recover automatically without retry storms or unclear ownership.
+failureModel:
+  targetClass: own-workload
+  failureMode: restart
+  selectionPolicy: random-bounded
+  exposure: 75 percent of request-serving instances over the experiment window
+  jitter: randomize start time and target order inside the operating window
+blastRadius:
+  scope: checkout-api production request-serving instances
+  maxConcurrentImpact: below remaining healthy capacity for peak expected traffic
+cadence:
+  schedule: weekly
+  exclusionWindows:
+    - major retail events
+pauseAuthority: checkout incident commander or service owner
 evidence:
   - checkout availability SLO
-  - checkout dependency latency
-  - checkout fallback logs
-
+  - checkout latency SLO
+  - request retry and circuit breaker telemetry
+  - workload restart and recovery logs
+learningLoop:
+  review: monthly
+  followUp: create action items for retry storms, missing fallback, slow recovery, or unclear ownership

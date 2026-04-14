@@ -26,6 +26,7 @@ required_files=(
   docs/usage-scenarios/service-reliability-onboarding.md
   docs/usage-scenarios/telemetry-derived-sli-slo-onboarding.md
   docs/usage-scenarios/sli-slo-definition-and-review.md
+  docs/usage-scenarios/resilience-experiment-planning.md
   docs/usage-scenarios/incident-to-postmortem-to-learning.md
   docs/migration/mapping-current-process-to-model.md
   docs/sources/source-scan-summary.md
@@ -62,5 +63,9 @@ grep -R "kind: IncidentRecord" examples/incident-record.yaml >/dev/null
 grep -R "kind: PostmortemAnalysis" examples/postmortem-analysis.yaml >/dev/null
 grep -R "verification:" examples/action-item.yaml >/dev/null
 grep -R "abortCriteria:" examples/resilience-experiment.yaml >/dev/null
+grep -R "experimentType: ambient-failure" examples/resilience-experiment.yaml >/dev/null
+grep -R "jitter:" examples/resilience-experiment.yaml >/dev/null
+grep -R "ambient failure" docs/intent/resilience-experiment-model.md docs/usage-scenarios/resilience-experiment-planning.md >/dev/null
+grep -R "failure is normal" docs/intent/resilience-experiment-model.md docs/usage-scenarios/resilience-experiment-planning.md >/dev/null
 
 echo "validation ok"
